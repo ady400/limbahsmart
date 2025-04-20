@@ -1,2 +1,2 @@
-# Jalankan aplikasi Streamlit ini dengan perintah berikut:
-streamlit run app.py
+streamlit
+python.pdf
