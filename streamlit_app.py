@@ -61,6 +61,10 @@ st.markdown("""
             margin: 40px auto 0;
             max-width: 600px;
         }
+
+        .feature-icon {
+            margin-bottom: 15px;
+        }
     </style>
 """, unsafe_allow_html=True)
 
@@ -93,17 +97,17 @@ st.markdown('<div class="section"><h4>Fitur Utama Aplikasi</h4></div>', unsafe_a
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.image("https://img.icons8.com/color/96/lab-items.png", width=64)
+    st.image("https://img.icons8.com/color/96/lab-items.png", width=64, class_="feature-icon")
     st.markdown('<div class="icon-title">Simulasi Uji Lab</div>', unsafe_allow_html=True)
     st.markdown('<div class="icon-desc">Hitung parameter limbah dan uji pengolahan secara virtual.</div>', unsafe_allow_html=True)
 
 with col2:
-    st.image("https://img.icons8.com/color/96/education.png", width=64)
+    st.image("https://img.icons8.com/color/96/education.png", width=64, class_="feature-icon")
     st.markdown('<div class="icon-title">Edukasi Proses</div>', unsafe_allow_html=True)
     st.markdown('<div class="icon-desc">Pelajari tahapan pengolahan limbah secara menyeluruh.</div>', unsafe_allow_html=True)
 
 with col3:
-    st.image("https://img.icons8.com/color/96/data-configuration.png", width=64)
+    st.image("https://img.icons8.com/color/96/data-configuration.png", width=64, class_="feature-icon")
     st.markdown('<div class="icon-title">Manajemen Data</div>', unsafe_allow_html=True)
     st.markdown('<div class="icon-desc">Simpan dan kelola hasil simulasi untuk keperluan analisis.</div>', unsafe_allow_html=True)
 
