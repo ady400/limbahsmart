@@ -1,2 +1,7 @@
-sreamlit run app.py
+# Jalankan aplikasi Streamlit ini dengan perintah berikut:
+streamlit run app.py
+
+# Pastikan Python dan Streamlit sudah terinstal.
+# Jika belum, instal dengan pip:
+# pip install streamlit
 
