@@ -8,7 +8,7 @@ st.set_page_config(page_title="Limbah Industri", page_icon="♻️", layout="wid
 
 # Sidebar
 with st.sidebar:
-    st.image("https://cdn-icons-png.flaticon.com/512/1866/1866365.png", width=100)
+    st.image("https://www.flaticon.com/free-icon/zero-waste_14119317?term=industrial+waste+processing&page=1&position=1&origin=search&related_id=14119317", width=100)
     st.title("♻️ Limbah Industri")
     st.markdown("**Belajar & Simulasi Limbah Industri** 🌍")
     st.markdown("---")
