@@ -43,7 +43,7 @@ if menu == "🏠 Beranda":
 
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.image("https://www.flaticon.com/free-icon/test-tube_4436312", width=150)
+        st.image("https://cdn-icons-png.flaticon.com/512/1866/1866365.png", width=80)
         st.markdown("### Edukasi Proses")
         st.write("Kenali tahapan pengolahan limbah dari awal hingga akhir.")
     with col2:
