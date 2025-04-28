@@ -43,7 +43,7 @@ if menu == "🏠 Beranda":
 
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.image("https://cdn-icons-png.flaticon.com/512/1866/1866365.png", width=80)
+        st.image("https://sdmntprwestus.oaiusercontent.com/files/00000000-ede0-6230-b63a-75bf9080fb7c/raw?se=2025-04-28T04%3A31%3A32Z&sp=r&sv=2024-08-04&sr=b&scid=e4e7c1cd-388c-542b-b620-4ec05c16a1e2&skoid=4ae7b564-2531-470e-8ddb-6913f4bee2ee&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-27T19%3A55%3A37Z&ske=2025-04-28T19%3A55%3A37Z&sks=b&skv=2024-08-04&sig=D/164p6zizo/LJcRDuDGtBimABb0Fjk0f4GC5lHaQRo%3D", width=80)
         st.markdown("### Edukasi Proses")
         st.write("Kenali tahapan pengolahan limbah dari awal hingga akhir.")
     with col2:
