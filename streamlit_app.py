@@ -8,7 +8,7 @@ st.set_page_config(page_title="Limbah Industri", page_icon="♻️", layout="wid
 
 # Sidebar
 with st.sidebar:
-    st.image("https://images.app.goo.gl/mygiP1ZDfpBARwPw9", width=100)
+    st.image("https://images.app.goo.gl/EY2H6Jmz1CiZ74BL9", width=100)
     st.title("♻️ Limbah Industri")
     st.markdown("**Belajar & Simulasi Limbah Industri** 🌍")
     st.markdown("---")
