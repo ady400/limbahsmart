@@ -8,7 +8,7 @@ st.set_page_config(page_title="Limbah Industri", page_icon="♻️", layout="wid
 
 # Sidebar
 with st.sidebar:
-    st.image("https://sdmntprwestus.oaiusercontent.com/files/00000000-6fc4-6230-8449-c29c8fbec123/raw?se=2025-04-28T03%3A34%3A08Z&sp=r&sv=2024-08-04&sr=b&scid=5a4260e4-ddce-5d95-937a-327032b548b4&skoid=4ae7b564-2531-470e-8ddb-6913f4bee2ee&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-27T08%3A46%3A40Z&ske=2025-04-28T08%3A46%3A40Z&sks=b&skv=2024-08-04&sig=KTs%2BJxMtlhTrNdJurJ5qWFm26SbjGsHb82vzNxtfaOY%3D", width=1000)
+    st.image("https://sdmntprwestus.oaiusercontent.com/files/00000000-6fc4-6230-8449-c29c8fbec123/raw?se=2025-04-28T04%3A36%3A20Z&sp=r&sv=2024-08-04&sr=b&scid=3f9baef7-2cb5-5248-a70b-31b0008fc0a4&skoid=4ae7b564-2531-470e-8ddb-6913f4bee2ee&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-27T15%3A42%3A30Z&ske=2025-04-28T15%3A42%3A30Z&sks=b&skv=2024-08-04&sig=PGARzii5F6YeM%2BXHnt1b3zEBCcNEGRFxUx6lc%2B0mJY8%3D", width=1000)
     st.title("♻️ Limbah Industri")
     st.markdown("**Belajar & Simulasi Pengolahan Limbah Industri** 🌍")
     st.markdown("---")
