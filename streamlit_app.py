@@ -1,7 +1,8 @@
 import time 
 import numpy as np 
 import pandas as pd 
-import streamlit as st import io
+import streamlit as st 
+import io
 
 Konfigurasi halaman
 
