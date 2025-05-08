@@ -2,7 +2,8 @@ import time
 import numpy as np
 import pandas as pd
 import streamlit as st
-import io from streamlit_lottie 
+import io 
+from streamlit_lottie 
 import st_lottie
 import requests
 
