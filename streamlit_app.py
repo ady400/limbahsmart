@@ -12,24 +12,29 @@ st.markdown("""
     <style>
     html, body, [class*="css"] {
         font-family: 'Segoe UI', sans-serif;
-        background-color: #f0f4f8;
+        background: linear-gradient(to right, #E3FDFD, #CBF1F5);
     }
     .main-title {
-        font-size: 40px;
-        color: #2C3E50;
+        font-size: 42px;
+        color: #0F4C75;
         text-align: center;
         padding-top: 20px;
-        animation: fadeIn 2s ease-in-out;
+        animation: slideIn 1.5s ease-in-out forwards;
+    }
+    @keyframes slideIn {
+        0% {opacity: 0; transform: translateY(-30px);}
+        100% {opacity: 1; transform: translateY(0);}
     }
     .stButton>button {
-        background-color: #2C3E50;
+        background-color: #3282B8;
         color: white;
-        border-radius: 8px;
-        padding: 0.5em 1em;
+        border-radius: 10px;
+        padding: 0.6em 1.2em;
+        transition: 0.3s ease;
     }
-    @keyframes fadeIn {
-        0% {opacity: 0; transform: translateY(-20px);}
-        100% {opacity: 1; transform: translateY(0);}
+    .stButton>button:hover {
+        background-color: #0F4C75;
+        transform: scale(1.05);
     }
     </style>
 """, unsafe_allow_html=True)
