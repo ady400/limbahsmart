@@ -3,6 +3,15 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import io
+from streamlit_lottie import st_lottie
+import requests
+
+# Fungsi untuk load animasi lottie
+def load_lottieurl(url):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
 
 # Konfigurasi halaman
 st.set_page_config(page_title="Limbah Industri", page_icon="♻", layout="wide")
@@ -12,11 +21,11 @@ with st.sidebar:
     st.title("♻ Limbah Track")
     st.markdown("*Belajar & Simulasi Pengolahan Limbah Industri* 🌍")
     st.markdown("---")
-    menu = st.radio("Navigasi", ["🏠 Beranda", "⚙ Proses", "🧪 Uji Lab", "🧩 Simulasi", "ℹ Tentang"])
+    menu = st.radio("Navigasi", ["🏠 Beranda", "⚙ Proses", "🧪 Uji Lab", "🧹 Simulasi", "ℹ Tentang"])
     st.markdown("---")
     st.caption("© 2025 Kelompok 6 - 1F PLI AKA")
 
-# CSS tambahan
+# CSS tambahan buat mempercantik
 st.markdown("""
     <style>
     .main-title {
@@ -29,6 +38,11 @@ st.markdown("""
     .stButton>button {
         background-color: #2C3E50;
         color: white;
+        transition: 0.3s ease;
+    }
+    .stButton>button:hover {
+        transform: scale(1.05);
+        background-color: #1abc9c;
     }
     body {
         background-color: #f5f9ff;
@@ -42,13 +56,20 @@ st.markdown("""
 
 # BERANDA
 if menu == "🏠 Beranda":
-    st.markdown("""
-    <div style='text-align: center; padding: 30px 0;'>
-        <h1 style='color:#2C3E50;'>♻ Aplikasi Pengolahan Limbah Industri ♻</h1>
-        <p style='font-size:18px; color:#555;'>Belajar dan simulasi proses pengolahan limbah industri secara interaktif dan edukatif.</p>
-    </div>
-    """, unsafe_allow_html=True)
+    lottie_animation = load_lottieurl("https://assets10.lottiefiles.com/packages/lf20_oGlWy5.json")
 
+    col1, col2 = st.columns([1, 2])
+    with col1:
+        st_lottie(lottie_animation, height=250)
+    with col2:
+        st.markdown("""
+        <div style='padding-top:30px;'>
+            <h2 style='color:#2C3E50;'>♻ Aplikasi Pengolahan Limbah Industri</h2>
+            <p style='font-size:16px; color:#555;'>Eksplorasi edukasi, kalkulasi uji lab, dan simulasi interaktif pengolahan limbah.</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown("---")
     col1, col2, col3 = st.columns(3)
     with col1:
         st.image("https://cdn-icons-png.flaticon.com/512/1866/1866365.png", width=80)
@@ -131,7 +152,7 @@ elif menu == "🧪 Uji Lab":
         st.info(f"pH = {ph}")
 
 # SIMULASI
-elif menu == "🧩 Simulasi":
+elif menu == "🧹 Simulasi":
     st.markdown('<div class="main-title">🔄 Simulasi Pengolahan Limbah</div>', unsafe_allow_html=True)
     jenis = st.selectbox("Jenis limbah", ["Organik", "Kimia", "Campuran"])
     awal = st.number_input("Konsentrasi awal (mg/L)", value=500.0)
@@ -150,7 +171,7 @@ elif menu == "ℹ Tentang":
     st.markdown('<div class="main-title">ℹ Tentang Aplikasi Ini</div>', unsafe_allow_html=True)
     st.write("""
     Aplikasi edukatif ini dibuat untuk mengenalkan proses pengolahan limbah industri secara interaktif.
-
+    
     - *Teknologi:* Python + Streamlit
     - *Pengembang:* Kelompok 6 - 1F PLI AKA
     - *Versi:* 1.0
