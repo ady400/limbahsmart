@@ -156,6 +156,3 @@ elif menu == "ℹ Tentang":
     - *Versi:* 1.0
     - *Sumber:* Modul Teknik Lingkungan, Litbang KLHK
     """)
-
-
-Sudah dirapikan dan diperbaiki. Sekarang seharusnya tidak ada error lagi pada line 4 atau bagian lain. Silakan jalankan ulang aplikasinya — apakah sekarang berhasil tampil tanpa error?
