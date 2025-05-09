@@ -5,7 +5,7 @@ import time
 import io
 
 # Konfigurasi halaman
-st.set_page_config(page_title="Limbah Industri", page_icon="♻", layout="wide")
+st.set_page_config(page_title="Limbah Industri", page_icon="♻️", layout="wide")
 
 # Animasi & CSS
 st.markdown("""
@@ -41,16 +41,16 @@ st.markdown("""
 
 # Sidebar
 with st.sidebar:
-    st.title("♻ Limbah Track")
-    st.markdown("*Belajar & Simulasi Pengolahan Limbah Industri* 🌍")
+    st.title("♻️ Limbah Track")
+    st.markdown("**Belajar & Simulasi Pengolahan Limbah Industri** 🌍")
     st.markdown("---")
-    menu = st.radio("Navigasi", ["🏠 Beranda", "⚙ Proses", "🧪 Uji Lab", "🧩 Simulasi", "ℹ Tentang"])
+    menu = st.radio("Navigasi", ["🏠 Beranda", "⚙️ Proses", "🧪 Uji Lab", "🧩 Simulasi", "ℹ️ Tentang"])
     st.markdown("---")
     st.caption("© 2025 Kelompok 6 - 1F PLI AKA")
 
 # BERANDA
 if menu == "🏠 Beranda":
-    st.markdown('<div class="main-title">♻ Aplikasi Pengolahan Limbah Industri ♻</div>', unsafe_allow_html=True)
+    st.markdown('<div class="main-title">♻️ Aplikasi Pengolahan Limbah Industri ♻️</div>', unsafe_allow_html=True)
     st.write("### Selamat datang!")
     st.info("Aplikasi ini dirancang untuk membantu memahami dan mensimulasikan proses pengolahan limbah industri.")
 
@@ -69,8 +69,8 @@ if menu == "🏠 Beranda":
         st.caption("Simulasikan pengolahan limbah secara virtual.")
 
 # PROSES
-elif menu == "⚙ Proses":
-    st.markdown('<div class="main-title">⚙ Tahapan Pengolahan Limbah Industri</div>', unsafe_allow_html=True)
+elif menu == "⚙️ Proses":
+    st.markdown('<div class="main-title">⚙️ Tahapan Pengolahan Limbah Industri</div>', unsafe_allow_html=True)
     st.markdown("""
     #### 1. Pra-Pengolahan
     - Screening: Menyaring benda kasar
@@ -142,7 +142,7 @@ elif menu == "🧩 Simulasi":
     awal = st.number_input("Konsentrasi awal (mg/L)", value=500.0)
 
     efisiensi = {"Organik": 0.85, "Kimia": 0.70, "Campuran": 0.60}[jenis]
-    if st.button("▶ Mulai Simulasi"):
+    if st.button("▶️ Mulai Simulasi"):
         akhir = awal * (1 - efisiensi)
         st.success(f"Hasil akhir: {akhir:.2f} mg/L ({efisiensi*100:.0f}% efisiensi)")
         buffer = io.StringIO()
@@ -150,13 +150,13 @@ elif menu == "🧩 Simulasi":
         st.download_button("📄 Unduh Hasil", buffer.getvalue(), file_name="hasil_simulasi.txt")
 
 # TENTANG
-elif menu == "ℹ Tentang":
-    st.markdown('<div class="main-title">ℹ Tentang Aplikasi Ini</div>', unsafe_allow_html=True)
+elif menu == "ℹ️ Tentang":
+    st.markdown('<div class="main-title">ℹ️ Tentang Aplikasi Ini</div>', unsafe_allow_html=True)
     st.write("""
     Aplikasi edukatif ini dibuat untuk mengenalkan proses pengolahan limbah industri secara interaktif.
     
-    - *Teknologi:* Python + Streamlit
-    - *Pengembang:* Kelompok 6 - 1F PLI AKA
-    - *Versi:* 1.0
-    - *Sumber:* Modul Teknik Lingkungan, Litbang KLHK
+    - **Teknologi:** Python + Streamlit
+    - **Pengembang:** Kelompok 6 - 1F PLI AKA
+    - **Versi:** 1.0
+    - **Sumber:** Modul Teknik Lingkungan, Litbang KLHK
     """)
