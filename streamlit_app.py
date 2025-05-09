@@ -1,102 +1,123 @@
 import streamlit as st
-import numpy as np
 import pandas as pd
+import numpy as np
 import time
-import io
+from streamlit_lottie import st_lottie
+import requests
 
-# Konfigurasi halaman
-st.set_page_config(page_title="Limbah Industri", page_icon="♻️", layout="wide")
+st.set_page_config(page_title="Limbah Track", layout="wide")
 
-# Animasi & CSS
+# Fungsi load animasi dari Lottie
+def load_lottieurl(url):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+
+lottie_url = "https://assets4.lottiefiles.com/packages/lf20_puciaact.json"
+lottie_anim = load_lottieurl(lottie_url)
+
+# Styling
 st.markdown("""
-    <style>
-    html, body, [class*="css"] {
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(to right, #E3FDFD, #CBF1F5);
-    }
-    .main-title {
-        font-size: 42px;
-        color: #0F4C75;
-        text-align: center;
-        padding-top: 20px;
-        animation: slideIn 1.5s ease-in-out forwards;
-    }
-    @keyframes slideIn {
-        0% {opacity: 0; transform: translateY(-30px);}
-        100% {opacity: 1; transform: translateY(0);}
-    }
-    .stButton>button {
-        background-color: #3282B8;
-        color: white;
-        border-radius: 10px;
-        padding: 0.6em 1.2em;
-        transition: 0.3s ease;
-    }
-    .stButton>button:hover {
-        background-color: #0F4C75;
-        transform: scale(1.05);
-    }
-    </style>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+html, body, [class*="css"]  {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+}
+.big-title {
+    font-size: 36px;
+    font-weight: 600;
+    color: #2C3E50;
+    text-align: center;
+    margin-bottom: 20px;
+    animation: slideFade 1s ease-in-out;
+}
+.card {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    text-align: center;
+}
+.card h2 {
+    font-size: 32px;
+    margin: 0;
+}
+.card p {
+    margin: 0;
+    color: #888;
+}
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-top: 1px solid #ccc;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+.bottom-nav div {
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+}
+@keyframes slideFade {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+</style>
 """, unsafe_allow_html=True)
 
 # Sidebar
 with st.sidebar:
+    st_lottie(lottie_anim, height=150, key="anim")
     st.title("♻️ Limbah Track")
     st.markdown("**Belajar & Simulasi Pengolahan Limbah Industri** 🌍")
-    st.markdown("---")
     menu = st.radio("Navigasi", ["🏠 Beranda", "⚙️ Proses", "🧪 Uji Lab", "🧩 Simulasi", "ℹ️ Tentang"])
-    st.markdown("---")
     st.caption("© 2025 Kelompok 6 - 1F PLI AKA")
 
-# BERANDA
+# Konten
 if menu == "🏠 Beranda":
-    st.markdown('<div class="main-title">♻️ Aplikasi Pengolahan Limbah Industri ♻️</div>', unsafe_allow_html=True)
-    st.write("### Selamat datang!")
-    st.info("Aplikasi ini dirancang untuk membantu memahami dan mensimulasikan proses pengolahan limbah industri.")
+    st.markdown('<div class="big-title">♻️ Limbah Track Dashboard</div>', unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns(3)
+    col1, col2 = st.columns(2)
     with col1:
-        st.image("https://cdn-icons-png.flaticon.com/512/1866/1866365.png", width=80)
-        st.subheader("Edukasi Proses")
-        st.caption("Kenali tahapan pengolahan limbah dari awal hingga akhir.")
+        st.markdown('<div class="card"><h2>8.7</h2><p>pH Status</p></div>', unsafe_allow_html=True)
+        st.markdown('<div class="card"><h2>10.4%</h2><p>Humidity</p></div>', unsafe_allow_html=True)
     with col2:
-        st.image("https://cdn-icons-png.flaticon.com/512/3135/3135823.png", width=80)
-        st.subheader("Uji Laboratorium")
-        st.caption("Hitung nilai COD, BOD, TSS, dan pH dari data sampel.")
-    with col3:
-        st.image("https://cdn-icons-png.flaticon.com/512/2933/2933820.png", width=80)
-        st.subheader("Simulasi Interaktif")
-        st.caption("Simulasikan pengolahan limbah secara virtual.")
+        st.markdown('<div class="card"><h2>430</h2><p>PPM Status</p></div>', unsafe_allow_html=True)
+        st.markdown('<div class="card"><h2>OK</h2><p>Status</p></div>', unsafe_allow_html=True)
 
-# PROSES
 elif menu == "⚙️ Proses":
-    st.markdown('<div class="main-title">⚙️ Tahapan Pengolahan Limbah Industri</div>', unsafe_allow_html=True)
-    st.markdown("""
-    #### 1. Pra-Pengolahan
-    - Screening: Menyaring benda kasar
-    - Grit Chamber: Mengendapkan partikel berat
-    - Equalization Tank: Menstabilkan aliran
+    st.markdown('<div class="big-title">⚙️ Tahapan Pengolahan Limbah</div>', unsafe_allow_html=True)
+    st.write("""
+    ### 1. Pra-Pengolahan
+    - Screening
+    - Grit Chamber
+    - Equalization Tank
 
-    #### 2. Pengolahan Primer
-    - Primary Clarifier: Mengendapkan padatan tersuspensi
+    ### 2. Pengolahan Primer
+    - Primary Clarifier
 
-    #### 3. Pengolahan Sekunder
-    - Aerob: Activated Sludge, Trickling Filter
-    - Anaerob: Digester, septic tank
+    ### 3. Pengolahan Sekunder
+    - Aerob / Anaerob
 
-    #### 4. Pengolahan Tersier
-    - Filtrasi, Kimia, Reverse Osmosis
+    ### 4. Pengolahan Tersier
+    - Filtrasi / Kimia
 
-    #### 5. Pengolahan Lumpur
-    - Thickening, Digestion, Dewatering
+    ### 5. Pengolahan Lumpur
+    - Digestion / Dewatering
 
-    #### 6. Pembuangan Akhir
-    - Limbah cair yang telah memenuhi baku mutu
+    ### 6. Pembuangan Akhir
+    - Buangan yang memenuhi baku mutu
     """)
 
-# UJI LAB
 elif menu == "🧪 Uji Lab":
-    st.markdown('<div class="main-title">🧪 Kalkulator Uji Laboratorium</div>', unsafe_allow_html=True)
+    st.markdown('<div class="big-title">🧪 Kalkulator Uji Laboratorium</div>', unsafe_allow_html=True)
     uji = st.selectbox("Pilih jenis uji:", ["COD", "BOD", "TSS", "pH"])
 
     if uji == "COD":
@@ -106,9 +127,6 @@ elif menu == "🧪 Uji Lab":
         if st.button("Hitung COD"):
             hasil = (v * n * 8000) / vs
             st.success(f"COD = {hasil:.2f} mg/L")
-            buffer = io.StringIO()
-            buffer.write(f"Hasil Uji COD\nVolume titran: {v} mL\nNormalitas: {n} N\nVolume sampel: {vs} mL\n=> COD = {hasil:.2f} mg/L")
-            st.download_button("📄 Unduh Hasil", buffer.getvalue(), file_name="hasil_uji_cod.txt")
 
     elif uji == "BOD":
         awal = st.number_input("DO Awal (mg/L)", value=8.0)
@@ -116,9 +134,6 @@ elif menu == "🧪 Uji Lab":
         if st.button("Hitung BOD"):
             hasil = awal - akhir
             st.success(f"BOD = {hasil:.2f} mg/L")
-            buffer = io.StringIO()
-            buffer.write(f"Hasil Uji BOD\nDO Awal: {awal} mg/L\nDO Akhir: {akhir} mg/L\n=> BOD = {hasil:.2f} mg/L")
-            st.download_button("📄 Unduh Hasil", buffer.getvalue(), file_name="hasil_uji_bod.txt")
 
     elif uji == "TSS":
         awal = st.number_input("Berat filter awal (mg)", value=100.0)
@@ -127,36 +142,38 @@ elif menu == "🧪 Uji Lab":
         if st.button("Hitung TSS"):
             hasil = (akhir - awal) / volume
             st.success(f"TSS = {hasil:.2f} mg/L")
-            buffer = io.StringIO()
-            buffer.write(f"Hasil Uji TSS\nBerat awal: {awal} mg\nBerat akhir: {akhir} mg\nVolume: {volume} L\n=> TSS = {hasil:.2f} mg/L")
-            st.download_button("📄 Unduh Hasil", buffer.getvalue(), file_name="hasil_uji_tss.txt")
 
     elif uji == "pH":
         ph = st.slider("pH sampel", 0.0, 14.0, 7.0)
         st.info(f"pH = {ph}")
 
-# SIMULASI
 elif menu == "🧩 Simulasi":
-    st.markdown('<div class="main-title">🔄 Simulasi Pengolahan Limbah</div>', unsafe_allow_html=True)
+    st.markdown('<div class="big-title">🔄 Simulasi Pengolahan Limbah</div>', unsafe_allow_html=True)
     jenis = st.selectbox("Jenis limbah", ["Organik", "Kimia", "Campuran"])
     awal = st.number_input("Konsentrasi awal (mg/L)", value=500.0)
-
     efisiensi = {"Organik": 0.85, "Kimia": 0.70, "Campuran": 0.60}[jenis]
-    if st.button("▶️ Mulai Simulasi"):
+    if st.button("Mulai Simulasi"):
         akhir = awal * (1 - efisiensi)
         st.success(f"Hasil akhir: {akhir:.2f} mg/L ({efisiensi*100:.0f}% efisiensi)")
-        buffer = io.StringIO()
-        buffer.write(f"Simulasi Pengolahan Limbah\nJenis: {jenis}\nKonsentrasi awal: {awal} mg/L\nEfisiensi: {efisiensi*100:.0f}%\n=> Hasil akhir: {akhir:.2f} mg/L")
-        st.download_button("📄 Unduh Hasil", buffer.getvalue(), file_name="hasil_simulasi.txt")
 
-# TENTANG
 elif menu == "ℹ️ Tentang":
-    st.markdown('<div class="main-title">ℹ️ Tentang Aplikasi Ini</div>', unsafe_allow_html=True)
+    st.markdown('<div class="big-title">ℹ️ Tentang Aplikasi Ini</div>', unsafe_allow_html=True)
     st.write("""
     Aplikasi edukatif ini dibuat untuk mengenalkan proses pengolahan limbah industri secara interaktif.
     
-    - **Teknologi:** Python + Streamlit
-    - **Pengembang:** Kelompok 6 - 1F PLI AKA
-    - **Versi:** 1.0
-    - **Sumber:** Modul Teknik Lingkungan, Litbang KLHK
+    - Teknologi: Python + Streamlit
+    - Pengembang: Kelompok 6 - 1F PLI AKA
+    - Versi: 1.0
     """)
+
+# Bottom nav bar
+st.markdown("""
+<div class="bottom-nav">
+  <div>🏠<br>Beranda</div>
+  <div>⚙️<br>Proses</div>
+  <div>🧪<br>Uji Lab</div>
+  <div>🧩<br>Simulasi</div>
+  <div>ℹ️<br>Tentang</div>
+</div>
+""", unsafe_allow_html=True)
+    
