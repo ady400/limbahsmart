@@ -3,22 +3,20 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import io
-import requests
 from streamlit_lottie import st_lottie
+import requests
 
-# Fungsi untuk load animasi dari URL
-def load_lottieurl(url):
+# Fungsi untuk memuat animasi lottie dari URL
+def load_lottie_url(url):
     r = requests.get(url)
     if r.status_code != 200:
         return None
     return r.json()
 
-# Load animasi per halaman
-lottie_recycle = load_lottieurl("https://assets10.lottiefiles.com/packages/lf20_ydo1amjm.json")
-lottie_process = load_lottieurl("https://assets5.lottiefiles.com/private_files/lf30_jbc4fisb.json")
-lottie_lab = load_lottieurl("https://assets4.lottiefiles.com/packages/lf20_tijmpv.json")
-lottie_simulasi = load_lottieurl("https://assets3.lottiefiles.com/packages/lf20_jtbfg2nb.json")
-lottie_info = load_lottieurl("https://assets1.lottiefiles.com/packages/lf20_JUr2Xt.json")
+# Lottie animations
+lottie_beranda = load_lottie_url("https://assets7.lottiefiles.com/packages/lf20_2glqweqs.json")
+lottie_lab = load_lottie_url("https://assets1.lottiefiles.com/packages/lf20_kkflmtur.json")
+lottie_simulasi = load_lottie_url("https://assets4.lottiefiles.com/packages/lf20_iwmd6pyr.json")
 
 # Konfigurasi halaman
 st.set_page_config(page_title="Limbah Industri", page_icon="♻", layout="wide")
@@ -32,7 +30,7 @@ with st.sidebar:
     st.markdown("---")
     st.caption("© 2025 Kelompok 6 - 1F PLI AKA")
 
-# CSS tambahan
+# CSS tambahan buat mempercantik
 st.markdown("""
     <style>
     .main-title {
@@ -58,7 +56,7 @@ st.markdown("""
 
 # BERANDA
 if menu == "🏠 Beranda":
-    st_lottie(lottie_recycle, height=250)
+    st_lottie(lottie_beranda, speed=1, loop=True, quality="high", height=250)
     st.markdown("""
     <div style='text-align: center; padding: 30px 0;'>
         <h1 style='color:#2C3E50;'>♻ Aplikasi Pengolahan Limbah Industri ♻</h1>
@@ -82,7 +80,6 @@ if menu == "🏠 Beranda":
 
 # PROSES
 elif menu == "⚙ Proses":
-    st_lottie(lottie_process, height=200)
     st.markdown('<div class="main-title">⚙ Tahapan Pengolahan Limbah Industri</div>', unsafe_allow_html=True)
     st.markdown("""
     ### 🧹 1. Pra-Pengolahan (Pre-Treatment)
@@ -109,7 +106,7 @@ elif menu == "⚙ Proses":
 
 # UJI LAB
 elif menu == "🧪 Uji Lab":
-    st_lottie(lottie_lab, height=200)
+    st_lottie(lottie_lab, speed=1, loop=True, quality="high", height=200)
     st.markdown('<div class="main-title">🧪 Kalkulator Uji Laboratorium</div>', unsafe_allow_html=True)
     uji = st.selectbox("Pilih jenis uji:", ["COD", "BOD", "TSS", "pH"])
 
@@ -151,7 +148,7 @@ elif menu == "🧪 Uji Lab":
 
 # SIMULASI
 elif menu == "🧩 Simulasi":
-    st_lottie(lottie_simulasi, height=200)
+    st_lottie(lottie_simulasi, speed=1, loop=True, quality="high", height=200)
     st.markdown('<div class="main-title">🔄 Simulasi Pengolahan Limbah</div>', unsafe_allow_html=True)
     jenis = st.selectbox("Jenis limbah", ["Organik", "Kimia", "Campuran"])
     awal = st.number_input("Konsentrasi awal (mg/L)", value=500.0)
@@ -160,17 +157,17 @@ elif menu == "🧩 Simulasi":
     if st.button("▶ Mulai Simulasi"):
         akhir = awal * (1 - efisiensi)
         st.success(f"Hasil akhir: {akhir:.2f} mg/L ({efisiensi*100:.0f}% efisiensi)")
+
         buffer = io.StringIO()
         buffer.write(f"Simulasi Pengolahan Limbah\nJenis: {jenis}\nKonsentrasi awal: {awal} mg/L\nEfisiensi: {efisiensi*100:.0f}%\n=> Hasil akhir: {akhir:.2f} mg/L")
         st.download_button("📄 Unduh Hasil", buffer.getvalue(), file_name="hasil_simulasi.txt")
 
 # TENTANG
 elif menu == "ℹ Tentang":
-    st_lottie(lottie_info, height=200)
     st.markdown('<div class="main-title">ℹ Tentang Aplikasi Ini</div>', unsafe_allow_html=True)
     st.write("""
     Aplikasi edukatif ini dibuat untuk mengenalkan proses pengolahan limbah industri secara interaktif.
-    
+
     - *Teknologi:* Python + Streamlit
     - *Pengembang:* Kelompok 6 - 1F PLI AKA
     - *Versi:* 1.0
