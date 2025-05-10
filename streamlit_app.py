@@ -14,7 +14,7 @@ def load_lottie_url(url):
     return r.json()
 
 # Lottie animations
-lottie_beranda = load_lottie_url("https://lottie.host/ee48ced5-df22-4533-b740-b974e480992e/wiYnVNrguo.json")
+lottie_beranda = load_lottie_url("https://lottie.host/6cd747f2-af46-4dc8-87d1-af6d341da912/lz1U6g00eQ.json")
 lottie_lab = load_lottie_url("https://assets1.lottiefiles.com/packages/lf20_kkflmtur.json")
 lottie_simulasi = load_lottie_url("https://assets4.lottiefiles.com/packages/lf20_iwmd6pyr.json")
 
