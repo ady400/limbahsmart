@@ -80,7 +80,7 @@ if menu == "🏠 Beranda":
 
 # PROSES
 elif menu == "⚙️ Proses":
-    st.markdown('<div class="main-title">⚙ Tahapan Pengolahan Limbah Industri</div>', unsafe_allow_html=True)
+    st.markdown('<div class="main-title">⚙️ Tahapan Pengolahan Limbah Industri</div>', unsafe_allow_html=True)
     st.markdown("""
     ### 🧹 1. Pra-Pengolahan (Pre-Treatment)
     - Screening: Menyaring benda kasar seperti plastik dan kayu.
@@ -149,7 +149,7 @@ elif menu == "🧪 Uji Lab":
 # SIMULASI
 elif menu == "🧩 Simulasi":
     st_lottie(lottie_simulasi, speed=1, loop=True, quality="high", height=200)
-    st.markdown('<div class="main-title">🔄 Simulasi Pengolahan Limbah</div>', unsafe_allow_html=True)
+    st.markdown('<div class="main-title">🧩 Simulasi Pengolahan Limbah</div>', unsafe_allow_html=True)
     jenis = st.selectbox("Jenis limbah", ["Organik", "Kimia", "Campuran"])
     awal = st.number_input("Konsentrasi awal (mg/L)", value=500.0)
 
@@ -164,7 +164,7 @@ elif menu == "🧩 Simulasi":
 
 # TENTANG
 elif menu == "ℹ️ Tentang":
-    st.markdown('<div class="main-title">ℹ Tentang Aplikasi Ini</div>', unsafe_allow_html=True)
+    st.markdown('<div class="main-title">ℹ️ Tentang Aplikasi Ini</div>', unsafe_allow_html=True)
     st.write("""
     Aplikasi edukatif ini dibuat untuk mengenalkan proses pengolahan limbah industri secara interaktif.
 
