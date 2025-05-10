@@ -18,7 +18,6 @@ lottie_beranda = load_lottie_url("https://lottie.host/15e91e5d-3dcb-4677-a73d-ac
 lottie_lab = load_lottie_url("https://lottie.host/6cd747f2-af46-4dc8-87d1-af6d341da912/lz1U6g00eQ.json")
 lottie_simulasi = load_lottie_url("https://assets4.lottiefiles.com/packages/lf20_iwmd6pyr.json")
 lottie_proses = load_lottie_url("")
-lottie_nav = load_lottie_url("https://lottie.host/6cd747f2-af46-4dc8-87d1-af6d341da912/lz1U6g00eQ.json")
 
 # Konfigurasi halaman
 st.set_page_config(page_title="Limbah Industri", page_icon="♻", layout="wide")
