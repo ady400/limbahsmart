@@ -166,14 +166,4 @@ elif menu == "ℹ️ Tentang":
     - Versi: 1.0
     """)
 
-# Bottom nav bar
-st.markdown("""
-<div class="bottom-nav">
-  <div>🏠<br>Beranda</div>
-  <div>⚙️<br>Proses</div>
-  <div>🧪<br>Uji Lab</div>
-  <div>🧩<br>Simulasi</div>
-  <div>ℹ️<br>Tentang</div>
-</div>
-""", unsafe_allow_html=True)
-    
+
