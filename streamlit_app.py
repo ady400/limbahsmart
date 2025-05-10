@@ -17,19 +17,17 @@ def load_lottie_url(url):
 lottie_beranda = load_lottie_url("https://lottie.host/947d937e-1b76-43a0-b786-d255c0ee1e74/stE5uwmVhW.json")
 lottie_lab = load_lottie_url("https://lottie.host/4f90617b-a17d-4947-8ae8-3f2e11b0243d/koIq19L8iq.json")
 lottie_simulasi = load_lottie_url("https://lottie.host/452e722c-e5f7-4a5a-bdaa-4f46c93a4ee6/FlkgyfRxKz.json")
-lottie_navigasi = load_lottie_url("https://assets9.lottiefiles.com/packages/lf20_tll0j4bb.json")  # Navigasi
-lottie_proses = load_lottie_url("https://assets3.lottiefiles.com/packages/lf20_uztsoacf.json")   # Mesin/proses
 
 
 # Konfigurasi halaman
-st.set_page_config(page_title="Limbah Industri", page_icon="♻", layout="wide")
+st.set_page_config(page_title="Limbah Track", page_icon="♻️", layout="wide")
 
 # Sidebar
 with st.sidebar:
-    st.title("♻ Limbah Track")
+    st.title("♻️ Limbah Track")
     st.markdown("Belajar & Simulasi Pengolahan Limbah Industri 🌍")
     st.markdown("---")
-    menu = st.radio("Navigasi", ["🏠 Beranda", "⚙ Proses", "🧪 Uji Lab", "🧩 Simulasi", "ℹ Tentang"])
+    menu = st.radio("Navigasi", ["🏠 Beranda", "⚙️ Proses", "🧪 Uji Lab", "🧩 Simulasi", "ℹ️ Tentang"])
     st.markdown("---")
     st.caption("© 2025 Kelompok 6 - 1F PLI AKA")
 
@@ -62,7 +60,7 @@ if menu == "🏠 Beranda":
     st_lottie(lottie_beranda, speed=1, loop=True, quality="high", height=250)
     st.markdown("""
     <div style='text-align: center; padding: 30px 0;'>
-        <h1 style='color:#2C3E50;'>♻ Aplikasi Pengolahan Limbah Industri ♻</h1>
+        <h1 style='color:#2C3E50;'>♻️ Aplikasi Pengolahan Limbah Industri ♻️</h1>
         <p style='font-size:18px; color:#555;'>Belajar dan simulasi proses pengolahan limbah industri secara interaktif dan edukatif.</p>
     </div>
     """, unsafe_allow_html=True)
@@ -82,8 +80,8 @@ if menu == "🏠 Beranda":
         st.write("Lakukan simulasi pengolahan limbah dengan berbagai jenis.")
 
 # PROSES
-elif menu == "⚙ Proses":
-    st.markdown('<div class="main-title">⚙ Tahapan Pengolahan Limbah Industri</div>', unsafe_allow_html=True)
+elif menu == "⚙️ Proses":
+    st.markdown('<div class="main-title">⚙️ Tahapan Pengolahan Limbah Industri</div>', unsafe_allow_html=True)
     st.markdown("""
     ### 🧹 1. Pra-Pengolahan (Pre-Treatment)
     - Screening: Menyaring benda kasar seperti plastik dan kayu.
@@ -166,7 +164,7 @@ elif menu == "🧩 Simulasi":
         st.download_button("📄 Unduh Hasil", buffer.getvalue(), file_name="hasil_simulasi.txt")
 
 # TENTANG
-elif menu == "ℹ Tentang":
+elif menu == "ℹ️ Tentang":
     st.markdown('<div class="main-title">ℹ Tentang Aplikasi Ini</div>', unsafe_allow_html=True)
     st.write("""
     Aplikasi edukatif ini dibuat untuk mengenalkan proses pengolahan limbah industri secara interaktif.
