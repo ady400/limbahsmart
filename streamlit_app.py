@@ -17,8 +17,6 @@ def load_lottie_url(url):
 lottie_beranda = load_lottie_url("https://lottie.host/947d937e-1b76-43a0-b786-d255c0ee1e74/stE5uwmVhW.json")
 lottie_lab = load_lottie_url("https://lottie.host/4f90617b-a17d-4947-8ae8-3f2e11b0243d/koIq19L8iq.json")
 lottie_simulasi = load_lottie_url("https://lottie.host/452e722c-e5f7-4a5a-bdaa-4f46c93a4ee6/FlkgyfRxKz.json")
-lottie_navigasi = load_lottie_url("https://lottie.host/fdb39ef1-4736-4f03-871b-8f71783890c6/2d3RFuYQw7.json")  # Navigasi sidebar
-lottie_proses = load_lottie_url("https://lottie.host/2c66cb21-334c-43a8-ae1b-a6480142dbf3/2t53X72tU3.json")  # Proses pengolahan
 
 
 # Konfigurasi halaman
