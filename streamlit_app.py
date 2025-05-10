@@ -6,18 +6,33 @@ import io
 from streamlit_lottie import st_lottie
 import requests
 
-# Fungsi untuk memuat animasi lottie dari URL
-def load_lottie_url(url):
-    r = requests.get(url)
-    if r.status_code != 200:
-        return None
-    return r.json()
+# Dictionary to store Lottie URLs
+LOTTIE_URLS = {
+    "beranda": "https://lottie.host/989173cd-9a17-4435-b21b-c9c52d1a37ef/1qPh1usQ0Q.json",
+    "lab": "https://lottie.host/6cd747f2-af46-4dc8-87d1-af6d341da912/lz1U6g00eQ.json",
+    "simulasi": "https://assets4.lottiefiles.com/packages/lf20_iwmd6pyr.json",
+    "proses": "https://lottie.host/7577d156-5beb-434a-959e-bbc73b55fe44/AF8JveZVdv.json",
+}
 
-# Lottie animations
-lottie_beranda = load_lottie_url("https://lottie.host/989173cd-9a17-4435-b21b-c9c52d1a37ef/1qPh1usQ0Q.json")
-lottie_lab = load_lottie_url("https://lottie.host/6cd747f2-af46-4dc8-87d1-af6d341da912/lz1U6g00eQ.json")
-lottie_simulasi = load_lottie_url("https://assets4.lottiefiles.com/packages/lf20_iwmd6pyr.json")
-lottie_proses = load_lottie_url("https://lottie.host/7577d156-5beb-434a-959e-bbc73b55fe44/AF8JveZVdv.json")
+# Function to load and cache Lottie animations
+@st.cache_data
+def load_lottie_url(url):
+    try:
+        r = requests.get(url)
+        r.raise_for_status()  # Raise an HTTPError for bad responses (4xx, 5xx)
+        return r.json()
+    except requests.exceptions.RequestException as e:
+        st.error(f"Failed to load Lottie animation from {url}: {e}")
+        return None
+
+# Load all Lottie animations
+lottie_animations = {key: load_lottie_url(url) for key, url in LOTTIE_URLS.items()}
+
+# Access specific animations using keys
+lottie_beranda = lottie_animations["beranda"]
+lottie_lab = lottie_animations["lab"]
+lottie_simulasi = lottie_animations["simulasi"]
+lottie_proses = lottie_animations["proses"]
 
 # Konfigurasi halaman
 st.set_page_config(page_title="Limbah Industri", page_icon="♻", layout="wide")
