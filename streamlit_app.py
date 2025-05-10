@@ -1,4 +1,4 @@
-import time
+eimport time
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -15,8 +15,8 @@ def load_lottie_url(url):
 
 # Lottie animations
 lottie_beranda = load_lottie_url("https://assets9.lottiefiles.com/packages/lf20_sFZyQq.json")
-lottie_lab = load_lottie_url("https://assets3.lottiefiles.com/packages/lf20_ecfuyhcc.json")
-lottie_simulasi = load_lottie_url("https://assets10.lottiefiles.com/private_files/lf30_m6j5igxb.json")
+lottie_lab = load_lottie_url("https://assets1.lottiefiles.com/packages/lf20_kkflmtur.json")
+lottie_simulasi = load_lottie_url("https://assets4.lottiefiles.com/packages/lf20_iwmd6pyr.json")
 
 # Konfigurasi halaman
 st.set_page_config(page_title="Limbah Industri", page_icon="♻", layout="wide")
