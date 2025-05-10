@@ -19,7 +19,7 @@ lottie_lab = load_lottie_url("https://assets1.lottiefiles.com/packages/lf20_kkfl
 lottie_simulasi = load_lottie_url("https://assets4.lottiefiles.com/packages/lf20_iwmd6pyr.json")
 
 # Konfigurasi halaman
-st.set_page_config(page_title="Limbah Industri", page_icon="♻", layout="wide")
+st.set_page_config(page_title="Limbah Industri", page_icon="♻️", layout="wide")
 
 # Sidebar
 with st.sidebar:
@@ -59,7 +59,7 @@ if menu == "🏠 Beranda":
     st_lottie(lottie_beranda, speed=1, loop=True, quality="high", height=250)
     st.markdown("""
     <div style='text-align: center; padding: 30px 0;'>
-        <h1 style='color:#2C3E50;'>♻ Aplikasi Pengolahan Limbah Industri ♻</h1>
+        <h1 style='color:#2C3E50;'>♻️ Aplikasi Pengolahan Limbah Industri ♻️</h1>
         <p style='font-size:18px; color:#555;'>Belajar dan simulasi proses pengolahan limbah industri secara interaktif dan edukatif.</p>
     </div>
     """, unsafe_allow_html=True)
