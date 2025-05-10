@@ -9,7 +9,7 @@ import requests
 # Fungsi untuk memuat animasi lottie dari URL
 def load_lottie_url(url):
     r = requests.get(url)
-    if r.status_code != 400:
+    if r.status_code != 200:
         return None
     return r.json()
 
