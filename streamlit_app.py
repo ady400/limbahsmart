@@ -5,6 +5,7 @@ import streamlit as st
 import io
 from streamlit_lottie import st_lottie
 import requests
+import plotly.graph_objects as go
 
 # Fungsi untuk memuat animasi lottie dari URL
 def load_lottie_url(url):
@@ -109,7 +110,6 @@ elif menu == "⚙️ Proses":
     ### 🌊 6. Pembuangan Akhir
     - Limbah cair buangan yang memenuhi standar.
     """)
-
 # UJI LAB
 elif menu == "🧪 Uji Lab":
     st_lottie(lottie_lab, speed=1, loop=True, quality="high", height=200)
@@ -123,6 +123,16 @@ elif menu == "🧪 Uji Lab":
         if st.button("Hitung COD"):
             hasil = (v * n * 8000) / vs
             st.success(f"COD = {hasil:.2f} mg/L")
+
+            fig = go.Figure(data=[go.Pie(
+                labels=["COD", "Sisa"],
+                values=[hasil, max(1000 - hasil, 0)],
+                hole=0.5,
+                marker_colors=["#2C3E50", "#95a5a6"]
+            )])
+            fig.update_layout(width=400, height=300)
+            st.plotly_chart(fig)
+
             buffer = io.StringIO()
             buffer.write(f"Hasil Uji COD\nVolume titran: {v} mL\nNormalitas: {n} N\nVolume sampel: {vs} mL\n=> COD = {hasil:.2f} mg/L")
             st.download_button("📄 Unduh Hasil", buffer.getvalue(), file_name="hasil_uji_cod.txt")
@@ -133,6 +143,16 @@ elif menu == "🧪 Uji Lab":
         if st.button("Hitung BOD"):
             hasil = awal - akhir
             st.success(f"BOD = {hasil:.2f} mg/L")
+
+            fig = go.Figure(data=[go.Pie(
+                labels=["Terpakai (BOD)", "Tersisa (Oksigen)"],
+                values=[hasil, akhir],
+                hole=0.5,
+                marker_colors=["#3498db", "#ecf0f1"]
+            )])
+            fig.update_layout(width=400, height=300)
+            st.plotly_chart(fig)
+
             buffer = io.StringIO()
             buffer.write(f"Hasil Uji BOD\nDO Awal: {awal} mg/L\nDO Akhir: {akhir} mg/L\n=> BOD = {hasil:.2f} mg/L")
             st.download_button("📄 Unduh Hasil", buffer.getvalue(), file_name="hasil_uji_bod.txt")
@@ -144,6 +164,16 @@ elif menu == "🧪 Uji Lab":
         if st.button("Hitung TSS"):
             hasil = (akhir - awal) / volume
             st.success(f"TSS = {hasil:.2f} mg/L")
+
+            fig = go.Figure(data=[go.Pie(
+                labels=["Padatan Tersuspensi", "Lainnya"],
+                values=[hasil, max(100 - hasil, 0)],
+                hole=0.5,
+                marker_colors=["#9b59b6", "#dcdde1"]
+            )])
+            fig.update_layout(width=400, height=300)
+            st.plotly_chart(fig)
+
             buffer = io.StringIO()
             buffer.write(f"Hasil Uji TSS\nBerat awal: {awal} mg\nBerat akhir: {akhir} mg\nVolume: {volume} L\n=> TSS = {hasil:.2f} mg/L")
             st.download_button("📄 Unduh Hasil", buffer.getvalue(), file_name="hasil_uji_tss.txt")
@@ -151,6 +181,15 @@ elif menu == "🧪 Uji Lab":
     elif uji == "pH":
         ph = st.slider("pH sampel", 0.0, 14.0, 7.0)
         st.info(f"pH = {ph}")
+        warna = "#2ecc71" if 6.5 <= ph <= 8.5 else "#e74c3c"
+        fig = go.Figure(data=[go.Pie(
+            labels=["pH", "Selisih dari Netral"],
+            values=[ph, 14 - ph],
+            hole=0.5,
+            marker_colors=[warna, "#ecf0f1"]
+        )])
+        fig.update_layout(width=400, height=300)
+        st.plotly_chart(fig)
 
 # SIMULASI
 elif menu == "🧩 Simulasi":
@@ -164,10 +203,20 @@ elif menu == "🧩 Simulasi":
         akhir = awal * (1 - efisiensi)
         st.success(f"Hasil akhir: {akhir:.2f} mg/L ({efisiensi*100:.0f}% efisiensi)")
 
+        fig = go.Figure(data=[go.Pie(
+            labels=["Terolah", "Tersisa"],
+            values=[awal - akhir, akhir],
+            hole=0.5,
+            marker_colors=["#27ae60", "#e74c3c"]
+        )])
+        fig.update_layout(width=400, height=300)
+        st.plotly_chart(fig)
+
         buffer = io.StringIO()
         buffer.write(f"Simulasi Pengolahan Limbah\nJenis: {jenis}\nKonsentrasi awal: {awal} mg/L\nEfisiensi: {efisiensi*100:.0f}%\n=> Hasil akhir: {akhir:.2f} mg/L")
         st.download_button("📄 Unduh Hasil", buffer.getvalue(), file_name="hasil_simulasi.txt")
 
+        
 # TENTANG
 elif menu == "ℹ️ Tentang":
     st.markdown('<div class="main-title">ℹ️ Tentang Aplikasi Ini</div>', unsafe_allow_html=True)
