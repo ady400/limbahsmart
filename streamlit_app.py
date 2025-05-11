@@ -1,47 +1,178 @@
+import time
+import numpy as np
+import pandas as pd
 import streamlit as st
-import re
+import io
+from streamlit_lottie import st_lottie
+import requests
 
-# Massa atom lengkap
-massa_atom = {
-    "H": 1.008, "He": 4.0026, "Li": 6.94, "Be": 9.0122, "B": 10.81, "C": 12.01,
-    "N": 14.007, "O": 16.00, "F": 18.998, "Ne": 20.180, "Na": 22.990, "Mg": 24.305,
-    "Al": 26.982, "Si": 28.085, "P": 30.974, "S": 32.06, "Cl": 35.45, "Ar": 39.948,
-    "K": 39.098, "Ca": 40.078, "Sc": 44.956, "Ti": 47.867, "V": 50.942, "Cr": 51.996,
-    "Mn": 54.938, "Fe": 55.845, "Co": 58.933, "Ni": 58.693, "Cu": 63.546, "Zn": 65.38,
-    "Ga": 69.723, "Ge": 72.63, "As": 74.922, "Se": 78.971, "Br": 79.904, "Kr": 83.798,
-    "Rb": 85.468, "Sr": 87.62, "Y": 88.906, "Zr": 91.224, "Nb": 92.906, "Mo": 95.95,
-    "Tc": 98, "Ru": 101.07, "Rh": 102.91, "Pd": 106.42, "Ag": 107.87, "Cd": 112.41,
-    "In": 114.82, "Sn": 118.71, "Sb": 121.76, "Te": 127.60, "I": 126.90, "Xe": 131.29,
-    "Cs": 132.91, "Ba": 137.33, "La": 138.91, "Ce": 140.12, "Pr": 140.91, "Nd": 144.24,
-    "Pm": 145, "Sm": 150.36, "Eu": 151.96, "Gd": 157.25, "Tb": 158.93, "Dy": 162.50,
-    "Ho": 164.93, "Er": 167.26, "Tm": 168.93, "Yb": 173.05, "Lu": 174.97, "Hf": 178.49,
-    "Ta": 180.95, "W": 183.84, "Re": 186.21, "Os": 190.23, "Ir": 192.22, "Pt": 195.08,
-    "Au": 196.97, "Hg": 200.59, "Tl": 204.38, "Pb": 207.2, "Bi": 208.98, "Po": 209,
-    "At": 210, "Rn": 222, "Fr": 223, "Ra": 226, "Ac": 227, "Th": 232.04, "Pa": 231.04,
-    "U": 238.03, "Np": 237, "Pu": 244, "Am": 243, "Cm": 247, "Bk": 247, "Cf": 251,
-    "Es": 252, "Fm": 257, "Md": 258, "No": 259, "Lr": 266, "Rf": 267, "Db": 268,
-    "Sg": 269, "Bh": 270, "Hs": 277, "Mt": 278, "Ds": 281, "Rg": 282, "Cn": 285,
-    "Fl": 289, "Lv": 293, "Ts": 294, "Og": 294
-}
+# Fungsi untuk memuat animasi lottie dari URL
+def load_lottie_url(url):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
 
-# Fungsi hitung Mr
-def hitung_mr(rumus):
-    elemen = re.findall(r'([A-Z][a-z]*)(\d*)', rumus)
-    mr = 0
-    for simbol, jumlah in elemen:
-        jumlah = int(jumlah) if jumlah else 1
-        if simbol in massa_atom:
-            mr += massa_atom[simbol] * jumlah
-        else:
-            st.error(f"Unsur tidak dikenali: {simbol}")
-            return None
-    return mr
+# Lottie animations
+lottie_beranda = load_lottie_url("https://lottie.host/947d937e-1b76-43a0-b786-d255c0ee1e74/stE5uwmVhW.json")
+lottie_lab = load_lottie_url("https://lottie.host/4f90617b-a17d-4947-8ae8-3f2e11b0243d/koIq19L8iq.json")
+lottie_simulasi = load_lottie_url("https://lottie.host/452e722c-e5f7-4a5a-bdaa-4f46c93a4ee6/FlkgyfRxKz.json")
+lottie_proses = load_lottie_url("https://lottie.host/452e722c-e5f7-4a5a-bdaa-4f46c93a4ee6/FlkgyfRxKz.json")
 
-# UI Streamlit
-st.title("⚗️ Kalkulator Massa Molekul Relatif (Mr)")
-rumus = st.text_input("Masukkan Rumus Kimia", placeholder="Contoh: H2O, Fe2O3, NaCl")
 
-if rumus:
-    hasil = hitung_mr(rumus)
-    if hasil is not None:
-        st.success(f"Mr dari **{rumus.upper()}** adalah **{hasil:.2f} g/mol**")
+# Konfigurasi halaman
+st.set_page_config(page_title="Limbah Track", page_icon="♻", layout="wide")
+
+# Sidebar
+with st.sidebar:
+    st.title("♻ Limbah Track")
+    st.markdown("Belajar & Simulasi Pengolahan Limbah Industri 🌍")
+    st.markdown("---")
+    menu = st.radio("Navigasi", ["🏠 Beranda", "⚙ Proses", "🧪 Uji Lab", "🧩 Simulasi", "ℹ Tentang"])
+    st.markdown("---")
+    st.caption("© 2025 Kelompok 6 - 1F PLI AKA")
+
+# CSS tambahan buat mempercantik
+st.markdown("""
+    <style>
+    .main-title {
+        font-size: 36px;
+        color: #2C3E50;
+        text-align: center;
+        padding: 20px 0;
+        animation: fadeIn 2s;
+    }
+    .stButton>button {
+        background-color: #2C3E50;
+        color: white;
+    }
+    body {
+        background-color: #f5f9ff;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+# BERANDA
+if menu == "🏠 Beranda":
+    st_lottie(lottie_beranda, speed=1, loop=True, quality="high", height=300)
+    st.markdown("""
+    <div style='text-align: center; padding: 30px 0;'>
+        <h1 style='color:#2C3E50;'>♻ Manajemen & Edukasi Limbah Industri ♻</h1>
+        <p style='font-size:18px; color:#555;'>Belajar dan simulasi proses pengolahan limbah industri secara interaktif dan edukatif.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.image("https://cdn-icons-png.flaticon.com/512/1866/1866365.png", width=80)
+        st.markdown("### Edukasi Proses")
+        st.write("Kenali tahapan pengolahan limbah dari awal hingga akhir.")
+    with col2:
+        st.image("https://cdn-icons-png.flaticon.com/512/3135/3135823.png", width=80)
+        st.markdown("### Uji Laboratorium")
+        st.write("Hitung nilai COD, BOD, TSS, dan pH dari data sampel.")
+    with col3:
+        st.image("https://cdn-icons-png.flaticon.com/512/2933/2933820.png", width=80)
+        st.markdown("### Simulasi Interaktif")
+        st.write("Lakukan simulasi pengolahan limbah dengan berbagai jenis.")
+
+# PROSES
+elif menu == "⚙ Proses":
+    st_lottie(lottie_proses, speed=1, loop=True, quality="high", height=200)
+    st.markdown('<div class="main-title">⚙ Tahapan Pengolahan Limbah Industri</div>', unsafe_allow_html=True)
+    st.markdown("""
+    ### 🧹 1. Pra-Pengolahan (Pre-Treatment)
+    - Screening: Menyaring benda kasar seperti plastik dan kayu.
+    - Grit Chamber: Mengendapkan partikel berat seperti pasir.
+    - Equalization Tank: Menyeimbangkan aliran dan beban limbah.
+
+    ### 🧪 2. Pengolahan Primer
+    - Primary Clarifier: Mengendapkan padatan tersuspensi.
+
+    ### 🧬 3. Pengolahan Sekunder (Biologis)
+    - Aerob: Dengan oksigen (activated sludge, trickling filter).
+    - Anaerob: Tanpa oksigen untuk limbah berat.
+
+    ### 🧼 4. Pengolahan Tersier
+    - Filtrasi, Reverse Osmosis, Proses Kimia.
+
+    ### 🧱 5. Pengolahan Lumpur
+    - Thickening, Digestion, Dewatering.
+
+    ### 🌊 6. Pembuangan Akhir
+    - Limbah cair buangan yang memenuhi standar.
+    """)
+
+# UJI LAB
+elif menu == "🧪 Uji Lab":
+    st_lottie(lottie_lab, speed=1, loop=True, quality="high", height=200)
+    st.markdown('<div class="main-title">🧪 Kalkulator Uji Laboratorium</div>', unsafe_allow_html=True)
+    uji = st.selectbox("Pilih jenis uji:", ["COD", "BOD", "TSS", "pH"])
+
+    if uji == "COD":
+        v = st.number_input("Volume titran (mL)", value=10.0)
+        n = st.number_input("Normalitas titran (N)", value=0.25)
+        vs = st.number_input("Volume sampel (mL)", value=50.0)
+        if st.button("Hitung COD"):
+            hasil = (v * n * 8000) / vs
+            st.success(f"COD = {hasil:.2f} mg/L")
+            buffer = io.StringIO()
+            buffer.write(f"Hasil Uji COD\nVolume titran: {v} mL\nNormalitas: {n} N\nVolume sampel: {vs} mL\n=> COD = {hasil:.2f} mg/L")
+            st.download_button("📄 Unduh Hasil", buffer.getvalue(), file_name="hasil_uji_cod.txt")
+
+    elif uji == "BOD":
+        awal = st.number_input("DO Awal (mg/L)", value=8.0)
+        akhir = st.number_input("DO Akhir (mg/L)", value=2.0)
+        if st.button("Hitung BOD"):
+            hasil = awal - akhir
+            st.success(f"BOD = {hasil:.2f} mg/L")
+            buffer = io.StringIO()
+            buffer.write(f"Hasil Uji BOD\nDO Awal: {awal} mg/L\nDO Akhir: {akhir} mg/L\n=> BOD = {hasil:.2f} mg/L")
+            st.download_button("📄 Unduh Hasil", buffer.getvalue(), file_name="hasil_uji_bod.txt")
+
+    elif uji == "TSS":
+        awal = st.number_input("Berat filter awal (mg)", value=100.0)
+        akhir = st.number_input("Berat filter akhir (mg)", value=120.0)
+        volume = st.number_input("Volume sampel (L)", value=1.0)
+        if st.button("Hitung TSS"):
+            hasil = (akhir - awal) / volume
+            st.success(f"TSS = {hasil:.2f} mg/L")
+            buffer = io.StringIO()
+            buffer.write(f"Hasil Uji TSS\nBerat awal: {awal} mg\nBerat akhir: {akhir} mg\nVolume: {volume} L\n=> TSS = {hasil:.2f} mg/L")
+            st.download_button("📄 Unduh Hasil", buffer.getvalue(), file_name="hasil_uji_tss.txt")
+
+    elif uji == "pH":
+        ph = st.slider("pH sampel", 0.0, 14.0, 7.0)
+        st.info(f"pH = {ph}")
+
+# SIMULASI
+elif menu == "🧩 Simulasi":
+    st_lottie(lottie_simulasi, speed=1, loop=True, quality="high", height=200)
+    st.markdown('<div class="main-title">🧩 Simulasi Pengolahan Limbah</div>', unsafe_allow_html=True)
+    jenis = st.selectbox("Jenis limbah", ["Organik", "Kimia", "Campuran"])
+    awal = st.number_input("Konsentrasi awal (mg/L)", value=500.0)
+
+    efisiensi = {"Organik": 0.85, "Kimia": 0.70, "Campuran": 0.60}[jenis]
+    if st.button("Mulai Simulasi"):
+        akhir = awal * (1 - efisiensi)
+        st.success(f"Hasil akhir: {akhir:.2f} mg/L ({efisiensi*100:.0f}% efisiensi)")
+
+        buffer = io.StringIO()
+        buffer.write(f"Simulasi Pengolahan Limbah\nJenis: {jenis}\nKonsentrasi awal: {awal} mg/L\nEfisiensi: {efisiensi*100:.0f}%\n=> Hasil akhir: {akhir:.2f} mg/L")
+        st.download_button("📄 Unduh Hasil", buffer.getvalue(), file_name="hasil_simulasi.txt")
+
+# TENTANG
+elif menu == "ℹ Tentang":
+    st.markdown('<div class="main-title">ℹ Tentang Aplikasi Ini</div>', unsafe_allow_html=True)
+    st.write("""
+    Aplikasi edukatif ini dibuat untuk mengenalkan proses pengolahan limbah industri secara interaktif.
+
+    - Teknologi: Python + Streamlit
+    - Pengembang: Kelompok 6 - 1F PLI AKA
+    - Versi: 1.0
+    - Sumber: Modul Teknik Lingkungan, Litbang KLHK
+    """)
