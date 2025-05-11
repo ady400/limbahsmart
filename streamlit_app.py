@@ -68,7 +68,7 @@ if menu == "🏠 Beranda":
 
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.image("https://cdn-icons-png.flaticon.com/512/1866/1866365.png", width=80)
+        st_lottie(load_lottie_url("https://lottie.host/30b3a6b0-a898-4862-a498-5600b93ee6a7/R9YyJLBYSA.json"), height=100)
         st.markdown("### Edukasi Proses")
         st.write("Kenali tahapan pengolahan limbah dari awal hingga akhir.")
     with col2:
