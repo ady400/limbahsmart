@@ -15,7 +15,7 @@ def load_lottie_url(url):
 
 # Lottie animations
 lottie_beranda = load_lottie_url("https://lottie.host/947d937e-1b76-43a0-b786-d255c0ee1e74/stE5uwmVhW.json")
-lottie_lab = load_lottie_url("https://lottie.host/4f90617b-a17d-4947-8ae8-3f2e11b0243d/koIq19L8iq.json")
+lottie_lab = load_lottie_url("https://lottie.host/d9f6f3ec-bfb0-4fa4-a0e4-b20f47e1e1d8/vOWaT7sFgA.json")
 lottie_simulasi = load_lottie_url("https://lottie.host/452e722c-e5f7-4a5a-bdaa-4f46c93a4ee6/FlkgyfRxKz.json")
 lottie_proses = load_lottie_url("https://lottie.host/83a75fcc-2836-4020-ba68-10b9e0f7aa75/RTuEA9yHNB.json")
 
