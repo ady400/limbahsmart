@@ -71,15 +71,15 @@ if menu == "🏠 Beranda":
 
     col1, col2, col3 = st.columns(3)
     with col1:
-        st_lottie(lottie_edukasi, height=100)
+        st_lottie(lottie_edukasi, speed=1, loop=True, quality="high", height=300)
         st.markdown("### Edukasi Proses")
         st.write("Kenali tahapan pengolahan limbah dari awal hingga akhir.")
     with col2:
-        st_lottie(lottie_laboratorium, height=100)
+        st_lottie(lottie_laboratorium, speed=1, loop=True, quality="high", height=300)
         st.markdown("### Uji Laboratorium")
         st.write("Hitung nilai COD, BOD, TSS, dan pH dari data sampel.")
     with col3:
-        st_lottie(lottie_interaktif, height=100)
+        st_lottie(lottie_simulasi, speed=1, loop=True, quality="high", height=300)
         st.markdown("### Simulasi Interaktif")
         st.write("Lakukan simulasi pengolahan limbah dengan berbagai jenis.")
 
