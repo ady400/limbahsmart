@@ -18,6 +18,9 @@ lottie_beranda = load_lottie_url("https://lottie.host/947d937e-1b76-43a0-b786-d2
 lottie_lab = load_lottie_url("https://lottie.host/ad0ad4a2-3e19-4bc4-a8f8-6447dbc72c73/s5hNdaq1uX.json")
 lottie_simulasi = load_lottie_url("https://lottie.host/452e722c-e5f7-4a5a-bdaa-4f46c93a4ee6/FlkgyfRxKz.json")
 lottie_proses = load_lottie_url("https://lottie.host/83a75fcc-2836-4020-ba68-10b9e0f7aa75/RTuEA9yHNB.json")
+lottie_edukasi = load_lottie_url("https://lottie.host/30b3a6b0-a898-4862-a498-5600b93ee6a7/R9YyJLBYSA.json")
+lottie_laboratorium = load_lottie_url("https://lottie.host/512b24b7-72c0-4868-93cf-641162ab8ce5/y2TUFxINa1.json")
+lottie_interaktif = load_lottie_url("https://lottie.host/c05db921-8621-4615-9dbc-b2426d2498f1/P8ISIUBD92.json")
 
 
 # Konfigurasi halaman
@@ -68,15 +71,15 @@ if menu == "🏠 Beranda":
 
     col1, col2, col3 = st.columns(3)
     with col1:
-        st_lottie(load_lottie_url("https://lottie.host/30b3a6b0-a898-4862-a498-5600b93ee6a7/R9YyJLBYSA.json"), height=100)
+        st_lottie(lottie_edukasi, height=100)
         st.markdown("### Edukasi Proses")
         st.write("Kenali tahapan pengolahan limbah dari awal hingga akhir.")
     with col2:
-        st.image("https://cdn-icons-png.flaticon.com/512/3135/3135823.png", width=80)
+        st_lottie(lottie_laboratorium, height=100)
         st.markdown("### Uji Laboratorium")
         st.write("Hitung nilai COD, BOD, TSS, dan pH dari data sampel.")
     with col3:
-        st.image("https://cdn-icons-png.flaticon.com/512/2933/2933820.png", width=80)
+        st_lottie(lottie_interaktif, height=100)
         st.markdown("### Simulasi Interaktif")
         st.write("Lakukan simulasi pengolahan limbah dengan berbagai jenis.")
 
