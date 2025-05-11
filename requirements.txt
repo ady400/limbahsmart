@@ -2,4 +2,3 @@ streamlit
 pandas
 numpy
 streamlit-lottie
-plotly.graph_objects
