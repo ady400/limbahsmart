@@ -67,7 +67,7 @@ if menu == "🏠 Beranda":
     st.markdown("""
         <style>
         .hero {
-            background: linear-gradient(135deg, #d4edda, green);
+            background: linear-gradient(135deg, #d4edda, green ligth);
             color: white;
             padding: 40px 20px;
             border-radius: 20px;
