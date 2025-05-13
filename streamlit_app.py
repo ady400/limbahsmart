@@ -68,7 +68,7 @@ if menu == "🏠 Beranda":
         <style>
         .hero {
             background: linear-gradient(135deg, #d4edda, #3498db);
-            color: green;
+            color: white;
             padding: 40px 20px;
             border-radius: 20px;
             text-align: center;
