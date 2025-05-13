@@ -64,23 +64,23 @@ st.markdown("""
 # BERANDA
 if menu == "🏠 Beranda":
     st_lottie(lottie_beranda, speed=1, loop=True, quality="high", height=300)
-   st.markdown("""
-    <style>
-    .hero {
-        background: linear-gradient(135deg, #2C3E50, #3498db);
-        color: white;
-        padding: 40px 20px;
-        border-radius: 20px;
-        text-align: center;
-        margin-bottom: 30px;
-        animation: fadeIn 2s;
-    }
-    </style>
-    <div class='hero'>
-        <h1>♻️ Manajemen & Edukasi Limbah Industri ♻️</h1>
-        <p>Belajar dan simulasi proses pengolahan limbah industri secara interaktif dan edukatif.</p>
-    </div>
-""", unsafe_allow_html=True)
+    st.markdown("""
+        <style>
+        .hero {
+            background: linear-gradient(135deg, #2C3E50, #3498db);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeIn 2s;
+        }
+        </style>
+        <div class='hero'>
+            <h1>♻️ Manajemen & Edukasi Limbah Industri ♻️</h1>
+            <p>Belajar dan simulasi proses pengolahan limbah industri secara interaktif dan edukatif.</p>
+        </div>
+    """, unsafe_allow_html=True)
 
     col1, col2, col3 = st.columns(3)
     with col1:
