@@ -2,10 +2,6 @@ import time
 import numpy as np
 import pandas as pd
 import streamlit as st
-
-# KONFIGURASI HALAMAN - HARUS PALING ATAS SEBELUM STREAMLIT LAINNYA
-st.set_page_config(page_title="Limbah Track", page_icon="♻", layout="wide")
-
 import io
 from streamlit_lottie import st_lottie
 import requests
