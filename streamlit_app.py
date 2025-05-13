@@ -8,16 +8,6 @@ import requests
 import io
 import plotly.graph_objects as go
 
-
-hide_manage_app = """
-    <style>
-    [data-testid="stDeployButton"] {
-        display: none !important;
-    }
-    </style>
-"""
-st.markdown(hide_manage_app, unsafe_allow_html=True)
-
 # Fungsi untuk memuat animasi lottie dari URL
 def load_lottie_url(url):
     r = requests.get(url)
