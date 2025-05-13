@@ -95,21 +95,6 @@ if menu == "🏠 Beranda":
         st_lottie(lottie_interaktif, speed=1, loop=True, quality="high", height=150)
         st.markdown("### Simulasi Interaktif")
         st.write("Lakukan simulasi pengolahan limbah dengan berbagai jenis.")
-    st.markdown("""
-        <style>
-        .card {
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.2s;
-        }
-        .card:hover {
-            transform: scale(1.03);
-        }
-        </style>
-    """, unsafe_allow_html=True)
 
 # PROSES
 elif menu == "⚙️ Proses":
