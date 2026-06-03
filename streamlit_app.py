@@ -93,11 +93,12 @@ if menu_pilihan == "🏠 Beranda Utama":
     st.markdown(
         """
         <div style="
-            background-color: #1e4620; 
-            padding: 20px; 
-            border-radius: 10px; 
-            margin-bottom: 25px;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+             background: linear-gradient(135deg, #d4edda, green);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
         ">
             <h1 style="color: white; margin: 0; font-size: 28px; text-align: center;">
                 🌿 Selamat Datang di Sistem Pemantauan Limbah B3
