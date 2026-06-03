@@ -101,7 +101,7 @@ if menu_pilihan == "🏠 Beranda Utama":
             margin-bottom: 30px;
         ">
             <h1 style="color: white; margin: 0; font-size: 28px; text-align: center;">
-                🌿 Selamat Datang di Sistem Pemantauan Limbah B3
+                🌿 Selamat Datang di Sistem Pemantauan Limbah B3 🌿
             </h1>
         </div>
         """, 
