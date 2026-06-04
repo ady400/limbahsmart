@@ -3,6 +3,7 @@ import pandas as pd
 from datetime import datetime, date
 import requests
 from streamlit_lottie import st_lottie
+import os
 
 # 1. PENGATURAN HALAMAN
 st.set_page_config(
@@ -142,7 +143,6 @@ B3_DATABASE = {
 # 4. INITIALIZATION DATABASE PERMANEN (CSV SYNC)
 NAMA_FILE_DB = "database_tps_b3.csv"
 KOLOM_DATABASE = ["ID Limbah", "Jenis Limbah", "Karakteristik / Simbol", "Rekomendasi Wadah", "Berat (Kg)", "Tanggal Masuk", "Batas Hari", "Sisa Hari", "Status"]
-
 if os.path.exists(NAMA_FILE_DB):
     try:
         st.session_state.b3_db = pd.read_csv(NAMA_FILE_DB)
