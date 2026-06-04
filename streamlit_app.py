@@ -139,12 +139,22 @@ B3_DATABASE = {
     }
 }
 
-# 4. INITIALIZATION SESSION STATE
-if "b3_db" not in st.session_state:
-    st.session_state.b3_db = pd.DataFrame(columns=[
-        "ID Limbah", "Jenis Limbah", "Karakteristik / Simbol", 
-        "Rekomendasi Wadah", "Berat (Kg)", "Tanggal Masuk", "Batas Hari", "Sisa Hari", "Status"
-    ])
+# 4. INITIALIZATION DATABASE PERMANEN (CSV SYNC)
+NAMA_FILE_DB = "database_tps_b3.csv"
+KOLOM_DATABASE = ["ID Limbah", "Jenis Limbah", "Karakteristik / Simbol", "Rekomendasi Wadah", "Berat (Kg)", "Tanggal Masuk", "Batas Hari", "Sisa Hari", "Status"]
+
+if os.path.exists(NAMA_FILE_DB):
+    try:
+        st.session_state.b3_db = pd.read_csv(NAMA_FILE_DB)
+        # Konversi format text tanggal dari CSV kembali menjadi objek date Python agar tidak error
+        if not st.session_state.b3_db.empty:
+            st.session_state.b3_db["Tanggal Masuk"] = pd.to_datetime(st.session_state.b3_db["Tanggal Masuk"]).dt.date
+    except:
+        st.session_state.b3_db = pd.DataFrame(columns=KOLOM_DATABASE)
+else:
+    st.session_state.b3_db = pd.DataFrame(columns=KOLOM_DATABASE)
+    st.session_state.b3_db.to_csv(NAMA_FILE_DB, index=False)
+
 
 # ==================== SIDEBAR (NAVIGASI SAMPING) ====================
 with st.sidebar:
