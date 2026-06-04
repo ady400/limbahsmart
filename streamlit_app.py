@@ -141,8 +141,9 @@ B3_DATABASE = {
 }
 
 # 4. INITIALIZATION DATABASE PERMANEN (CSV SYNC)
-NAMA_FILE_DB = "database_tps_b3.csv"
+NAMA_FILE_DB = "data_limbah.csv"  # atau "database.db", atau "data.xlsx"
 KOLOM_DATABASE = ["ID Limbah", "Jenis Limbah", "Karakteristik / Simbol", "Rekomendasi Wadah", "Berat (Kg)", "Tanggal Masuk", "Batas Hari", "Sisa Hari", "Status"]
+
 if os.path.exists(NAMA_FILE_DB):
     try:
         st.session_state.b3_db = pd.read_csv(NAMA_FILE_DB)
